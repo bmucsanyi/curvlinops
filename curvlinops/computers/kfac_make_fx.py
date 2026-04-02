@@ -200,7 +200,7 @@ class MakeFxKFACComputer(_BaseKFACComputer):
                         )
                         for n in io_names
                     ]
-                    x = cat(xs, dim=1).float()
+                    x = cat(xs, dim=1)
                     scale = x.shape[1]
                     xxT = einsum(x, x, "batch shared i, batch shared j -> i j")
                     self._set_or_add_(
@@ -227,7 +227,7 @@ class MakeFxKFACComputer(_BaseKFACComputer):
                     )
                     for n in io_names
                 ]
-                g = cat(gs, dim=2).float()
+                g = cat(gs, dim=2)
                 correction = compute_loss_correction(
                     g.shape[1],
                     self._num_per_example_loss_terms,

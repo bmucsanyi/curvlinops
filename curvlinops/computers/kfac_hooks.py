@@ -332,7 +332,7 @@ class HooksKFACComputer(_BaseKFACComputer):
 
         g = grad_to_weight_sharing_format(
             g, self._kfac_approx, layer_hyperparams=layer_hyperparams
-        ).float()
+        )
 
         # Note: mc_samples scaling is already handled inside make_grad_output_fn.
         correction = compute_loss_correction(
@@ -380,7 +380,7 @@ class HooksKFACComputer(_BaseKFACComputer):
             self._kfac_approx,
             layer_hyperparams=layer_hyperparams,
             bias_pad=1 if has_joint_wb else None,
-        ).float()
+        )
         scale = x.shape[1]
         covariance = einsum(x, x, "batch shared i, batch shared j -> i j").div_(
             self._N_data * scale
