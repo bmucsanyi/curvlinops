@@ -338,6 +338,6 @@ class KroneckerProductLinearOperator(PyTorchLinearOperator):
             )
             # Retry in double precision
             original_dt = A.dtype
-            L = _damped_cholesky(A.to(float64), damping).to(original_dt)
+            L = _damped_cholesky(A.to(float64), damping)
 
-        return cholesky_inverse(L)
+        return cholesky_inverse(L).to(A.dtype)
